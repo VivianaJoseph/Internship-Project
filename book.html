@@ -1,0 +1,93 @@
+<?php
+/* Attempt MySQL server connection. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+
+if(isset($_POST['insert'])){	
+ 
+ $name = $_POST['name'];
+ $nights = $_POST['nights'];
+ $destination = $_POST['destination'];
+ $transactiondate = $_POST['transactiondate'];
+ 
+ $arrival = $_POST['arrival'];
+ $departure = $_POST['departure'];
+
+ 
+
+$connect = mysqli_connect("localhost","root","","room_management");
+echo "connected";
+ $query = "INSERT INTO booking(name,nights,destination,transactiondate,arrival,departure) VALUES (
+ '$name','$nights','$destination','$transactiondate','$arrival','$departure')";
+
+ $qryobj= mysqli_query($connect,$query);
+ if(isset($qryobj))
+ {
+ 	echo "Data Inserted";
+ }else
+ {
+ 	echo "Not Inserted";
+ }
+}
+
+
+?>
+
+
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	 <link rel="stylesheet" href="S.css">
+</head>
+			<section class="booking">
+	 <div class="container">
+		<form action="book.php" method="post" class="form">
+					<h5 class="section-head">
+				<span class="heading">BOOK NOW</span>
+				
+			</h5>
+			<div class="input-group">
+				<label  class="input-label">Name</label>
+				<input type="text"  name="name" class="input" >
+			</div>
+						<div class="input-group">
+				<label  class="input-label">Night</label>
+				<input type="number" name="nights" class="input" >
+			<div class="input-group">
+				<label for="destination" class="input-label">destination</label>
+				<input type="text" name="destination"class="input" >
+			</div>
+			
+			<div class="input-group">
+				<label  class="input-label">Transaction Date</label>
+				<input type="Date" class="input" name="transactiondate" >
+			</div>
+			
+			<div class="input-group">
+				<label  class="input-label">Time of Arrival</label>
+				<input type="Time" class="input" name="arrival" >
+			</div>
+			<div class="input-group">
+				<label  class="input-label">Time of Departure</label>
+				<input type="Time" class="input" name="departure" >
+			</div>
+			
+
+				
+			</div>
+			
+			<button  name="insert" class="btn form-btn btn-purple">Submit
+			</button>
+			
+			
+			</h5>
+		
+	
+		
+	
+</form>
+</div>
+</section>
+</html>
